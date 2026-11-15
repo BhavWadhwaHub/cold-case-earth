@@ -15,7 +15,35 @@ how strong the evidence is, and whether the claim survives scrutiny.
 | Opposite Twin | Is the same measurement going the other way somewhere else? |
 | Check a claim | Type "Phoenix is getting drier" and get TRUE, FALSE or UNPROVEN |
 
-## Run it
+## Two front ends, one set of statistics
+
+All the maths lives in Python (`detective.py`). Both front ends show the same results.
+
+### Web app (React, in `web/`)
+
+The public site: a space-themed interface with a 3D globe. It displays results
+that `scripts/build_data.py` precomputes into `web/public/data/cases.json`.
+
+```
+cd web
+npm install
+npm run dev        # local development
+npm run build      # production build in web/dist
+```
+
+Deploy on Vercel: import this repository and set **Root Directory** to `web`.
+Vercel detects Vite and needs no other settings.
+
+After changing data or statistics, regenerate the results from the repository root:
+
+```
+pip install -r requirements.txt
+python scripts/build_data.py
+```
+
+### Analysis app (Streamlit, at the repository root)
+
+The same cases plus a live lookup for any location from NASA POWER.
 
 ```
 pip install -r requirements.txt
